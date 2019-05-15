@@ -1,3 +1,10 @@
-<p>
-  dog works!
-</p>
+<h1>Dog Detail</h1>
+<app-dog-detail [dog]="_dog"></app-dog-detail>
+<!-- user detail  -->
+<div class="card-deck mb-3">
+  <app-user-summary *ngFor="let owner of owners" (click)="navTo(2, owner)" [user]="owner"></app-user-summary>
+</div>
+<!-- user list -->
+<button class="btn btn-secondary mr-3" (click)="navTo(0)">Users List</button>
+<!-- dogs list  -->
+<button class="btn btn-secondary" (click)="navTo(1)">Dogs List</button>
