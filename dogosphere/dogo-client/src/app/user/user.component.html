@@ -1,10 +1,5 @@
-<h1>User Detail</h1>
 <app-user-detail [user]= "_user"></app-user-detail>
 <!-- dog detail  -->
 <div class="card-deck">
  <app-dog-summary *ngFor="let dog of dogs" (click)="navTo(3, dog)" [dog]="dog"></app-dog-summary>
 </div>
-<!-- user list -->
-<button class="btn btn-secondary" (click)="navTo(0)">User List</button>
-<!-- dog list -->
-<button class="btn btn-secondary" (click)="navTo(1)">Dog List</button>

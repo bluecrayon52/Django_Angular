@@ -1,6 +1,14 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<div class="row p-3 py-3 bg-secondary">
+<h1 class="text-white col-6">The DogoSphere: <span class="text-info {{textColor}}">{{pageName}}</span></h1>
+<div class="col d-flex mr-1 justify-content-end">
+    <button *ngIf="page == 0 || page == 2 || page == 3" (click)=onNavClick(1) class="btn text-white my-3 {{bgColor}}">Dogs List</button>
+    <button *ngIf="page == 1 || page == 2 || page == 3" (click)=onNavClick(0) class="btn text-white my-3 ml-3 {{bgColor}}">Users List</button>  
+</div>
+</div>
+<div class="mx-5 my-3">
 <app-users *ngIf="page == 0" (navNum)="onNavClick($event)" (navObj)="setObj($event)"></app-users>
 <app-dogs *ngIf="page == 1" (navNum)="onNavClick($event)" (navObj)="setObj($event)" ></app-dogs>
 <app-user *ngIf="page == 2" (navNum)="onNavClick($event)" (navObj)="setObj($event)" [user] = "obj"></app-user>
 <app-dog *ngIf="page == 3" (navNum)="onNavClick($event)" (navObj)="setObj($event)" [dog] = "obj"></app-dog>
-<!-- <router-outlet *ngIf="page == 4" (navNum)="onNavClick($event)"></router-outlet> -->
+</div>
