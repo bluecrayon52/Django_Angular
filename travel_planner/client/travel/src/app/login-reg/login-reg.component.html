@@ -1,0 +1,64 @@
+<div class="wrap">
+  <h1 class="mb-4">Login and Registration</h1>
+  <hr>
+  <div class="card-group">
+      <div class="card border-0 mr-5">
+          <div class="card-body">
+              <h4 class="card-title">Register Here!</h4>
+              <hr>
+              <form (ngSubmit) ="onRegister()">
+                  <div class="form-group col">
+                      <label for="first_name">First Name:</label>
+                      <input [(ngModel)] ="reg_obj.first_name" required minlength='3' #first_name='ngModel' class="form-control" type='text' id="first_name" name='first_name'>
+                      <!-- <p *ngIf="first_name.errors.required">First Name required</p>
+                      <p *ngIf="first_name.errors.minlength">{{first_name.errors | json}}</p> -->
+                  </div>
+                  <div class="form-group col">
+                      <label for="last_name">Last Name:</label>
+                      <input [(ngModel)] ="reg_obj.last_name" class="form-control" type='text' id="last_name" name='last_name'>
+                  </div>
+                  <div class="form-group col">
+                    <label for="birthday">Birthday:</label>
+                    <input [(ngModel)] ="reg_obj.birthday" class="form-control" type='date' id="birthday" name='birthday'>
+                </div>
+                  <div class="form-group col">
+                      <label for="email">Email:</label>
+                      <input [(ngModel)] ="reg_obj.email" class="form-control" type='text' id="email" name='email'>
+                  </div>
+                  <div class="form-group col">
+                      <label for="password">Password:</label>
+                      <input [(ngModel)] ="reg_obj.password" class="form-control" type='password' id="password" name='password'>
+                  </div>
+                  <div class="form-group col">
+                      <label for="confirm_password">Confirm Password:</label>
+                      <input [(ngModel)] ="reg_obj.confirm_password" class="form-control" type='password' id="confirm_password" name='confirm_password'>
+                  </div>
+                  <hr>
+                  <div class="row d-flex mr-1 justify-content-end">
+                      <button type="submit" class="form-group row btn btn-success">Register!</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+      <div class="card border-0 ml-5">
+          <div class="card-body">
+              <h4 class="card-title">Login Here!</h4>
+              <hr>
+              <form (ngSubmit) ="onLogin()">
+                  <div class="form-group col">
+                      <label for="email">Email:</label>
+                      <input [(ngModel)] ="login_obj.email" class="form-control" type='text' id="email" name='email'>
+                  </div>
+                  <div class="form-group col">
+                      <label for="password">Password:</label>
+                      <input [(ngModel)] ="login_obj.password" class="form-control" type='password' id="password" name='password'>
+                  </div>
+                  <hr>
+                  <div class="row d-flex mr-1 justify-content-end">
+                      <button type="submit" class="form-group row btn btn-success">Login!</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
+</div>
