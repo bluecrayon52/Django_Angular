@@ -9,7 +9,7 @@ class UserManager(models.Manager):
     def register_validator(self, postData):
         errors = {}
         NAME_REGEX = re.compile(r'^[A-Za-z]{2,45}$')
-        PASS_REGEX = re.compile(r'^(?=.*[A-Z])(?=.*\d)(.{8,15})$')
+        PASS_REGEX = re.compile(r"^((\S*)([A-Z]+)(\S*)([0-9]+)(\S*))|((\S*)([0-9]+)(\S*)([A-Z]+)(\S*))$")
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         # first name 
         if len(postData['first_name']) < 1:
@@ -48,7 +48,10 @@ class UserManager(models.Manager):
             errors['password'] = "password required"
 
         elif not PASS_REGEX.match(postData['password']):
-            errors['password'] = "password must be at least 8 characters long and contain at least one upper case letter and one number"
+            errors['password'] = "password must contain one upper case letter, one number, and no spaces"
+
+        elif len(postData['password']) < 8:
+            errors['password'] = "password must be at least 8 characters long"
 
         else: 
             # confirm password
@@ -61,7 +64,7 @@ class UserManager(models.Manager):
 
     def login_validator(self, postData):
         errors = {}
-        PASS_REGEX = re.compile(r'^(?=.*[A-Z])(?=.*\d)(.{8,15})$')
+        PASS_REGEX = re.compile(r"^((\S*)([A-Z]+)(\S*)([0-9]+)(\S*))|((\S*)([0-9]+)(\S*)([A-Z]+)(\S*))$")
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
          # email 
         is_valid = True
@@ -76,7 +79,10 @@ class UserManager(models.Manager):
             errors['login_pass'] = "password required"
             is_valid = False
         elif not PASS_REGEX.match(postData['password']):
-            errors['login_pass'] = "password must be at least 8 characters long and contain at least one upper case letter and one number"
+            errors['login_pass'] = "password must contain one upper case letter, one number, and no spaces"
+            is_valid = False
+        elif len(postData['email']) < 8: 
+            errors['login_pass'] = "password must be at least 8 characters long"
             is_valid = False
         # creds 
         if is_valid:
